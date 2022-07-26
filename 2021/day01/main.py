@@ -1,36 +1,56 @@
 # Advent of Code 2021 Day 1 Part 1
 
+from dataclasses import dataclass
+import itertools
+
+
 def aocinput():
-    with open('input') as f:
-        b = f
-        return b
+    with open("input") as f:
+        aoc_input = []
+        for i in f:
+            aoc_input.append(int(i.strip()))
+        return aoc_input
+
+
+aoc_input = aocinput()
+
 
 def part1():
     total = -1
     pre = 0
-    input = aocinput()
-    for i in input:
+    for i in aoc_input:
         b = int(i.strip())
         if pre < b:
             total += 1
-            pre = b 
+            pre = b
         elif pre > b:
             pre = b
-    print(total)
+    print(f"Part 1 {total}")
+
 
 # Advent of Code 2021 Day 1 Part 2
 
-total = -1
-aoc_input = []
-with open('input') as f:
-    for i in f:
-        aoc_input.append(int(i.strip()))
-    pre = 0
-    for i in enumerate(list(aoc_input)):
-        b = sum(i)
-        if pre < b:
-            total += 1
-            pre = b 
-        elif pre > b:
-            pre = b
-    print(total)
+
+# I just want to grab 3 things from the list at a time
+# then I can assign one to a buffer, and compare the incoming
+# to the buffer.
+
+
+@dataclass(frozen=True)
+class Window:
+    size: int = 3
+
+
+def d1p2() -> int:
+    answer = 0
+    ws = Window.size
+    for i, v in enumerate(aoc_input):
+        buffer = sum(aoc_input[i : i + ws])
+        i += 1
+        buffer2 = sum(aoc_input[i : i + ws])
+        if buffer < buffer2:
+            answer += 1
+    print(answer)
+
+
+d1p2()
