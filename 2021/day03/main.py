@@ -1,8 +1,6 @@
 # Advent of Code 2021 Day 3 Part 1
 # Answer 2640986
 
-from dataclasses import dataclass
-
 
 def aocinput():
     with open("input") as f:
@@ -13,14 +11,6 @@ def aocinput():
 
 
 aoc_input = aocinput()
-
-
-@dataclass
-class Position:
-    gamma: int = 0
-    epsilon: int = 0
-    oxygen_generator_rating: int = 0
-    CO2_scrubber_rating: int = 0
 
 
 def dict_maker():
