@@ -15,8 +15,7 @@ aoc_input = aocinput()
 
 def dict_maker():
     positions = range(len(aoc_input[0]))
-    d = dict(zip(positions, [None] * len(positions)))
-    return d
+    return dict(zip(positions, [None] * len(positions)))
 
 
 def row_builder():
